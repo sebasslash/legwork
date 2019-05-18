@@ -6,6 +6,6 @@ class Tick:
         self.close  = c 
         self.volume = v 
         self.ticker = ticker
-    def get_ticker(self):
-        return self.ticker
+    def get_tick_info(self):
+        return self.ticker, self.open, self.high, self.low, self.close, self.volume
 

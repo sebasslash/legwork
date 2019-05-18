@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import Order 
+from .order import *
 class Portfolio:
    def __init__(self):
         self.portfolioValue = 100000
@@ -11,16 +11,16 @@ class Portfolio:
     
    def add_security(self, ticker, data, type="long"):
         # TODO
-       if type == "long":
-            self.securities[ticker] = data
-       elif type == "short":
-            self.short_securities[ticker] = data             
+         if type == "long":
+               self.securities[ticker] = data
+         elif type == "short":
+               self.short_securities[ticker] = data             
 
    def remove_security(self, ticker, type="long"):
-       if type == "long":
-            del self.securities[ticker]
-       elif type == "short":
-            del self.short_securities[ticker]
+         if type == "long":
+              del self.securities[ticker]
+         elif type == "short":
+              del self.short_securities[ticker]
     
    def calculate_performance(self):
         # TODO
@@ -29,7 +29,7 @@ class Portfolio:
             self.portfolioValue += security_data[1]
         print("Portfolio Value: {}".format(self.portfolioValue))
     
-    def update_portfolio(self, order):
+   def update_portfolio(self, order):
         if order.price * order.shares <= self.portfolioCash:
             self.portfolioCash -= order.price * order.shares 
             return True
