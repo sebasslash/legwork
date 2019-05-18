@@ -16,6 +16,6 @@ sh ./setup.sh
 #### Example run configuration
 
 ```bash
-python3 main.py --dir "Daily" --start-time "2016-12-15" --end-time="2018-12-17"
+python3 main.py --dir "Daily" --start-time "2016-12-15" --end-time "2018-12-17"
 ```
 
