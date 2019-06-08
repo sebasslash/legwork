@@ -34,7 +34,7 @@ class Backtester:
         info = tick.get_tick_info()
         print("Processing Event for {} : Details: Open {} High {} Low {} Close {} Volume {}".format(info[0], info[1], info[2], info[3], info[4], info[5]))
 
-    def run(self,step):
+    def run(self,step, print=False):
         for i in range(step):
             self.process_market_event(i)
             tick = self.market_event_queue.popleft()
@@ -50,12 +50,13 @@ class Backtester:
                 data[5] -> Volume 
             """
             data = tick.get_tick_info()
-            self.print_market_event(tick)
+            if print:
+                self.print_market_event(tick)
             for j in range(len(self.order_book)):
-               if self.order_book[j].ticker == data[0]:
+               if self.order_book[j].get_order_ticker() == data[0]:
                    if self.order_book[j].has_stop():
                         # TODO TBD
-                        print("")
+                        print("Has Stop")
                    elif self.order_book[j].has_limit():
                        if self.order_book[j].limit == data[4] or self.order_book[j].limit == data[1]:
                             # Execute Limit Order
@@ -66,14 +67,31 @@ class Backtester:
                             self.order_book[j].set_executed_price(data[4]) 
                        else:
                             self.order_book[j].set_executed_price(data[1])
-                       if self.portfolio.update_portfolio(self.order_book[j]):
-                            self.send_fill_notification(self.order_book[j])
+                   if self.portfolio.update_portfolio(self.order_book[j]):
+                       self.send_fill_notification(self.order_book[j])
+                    #    del self.order_book[j]
+                   else:
+                       print("Order for : {} @ {} for {} shares can not be fulfilled, lack of available funds"
+                                                    .format(self.order_book[j].get_order_ticker(), 
+                                                            self.order_book[j].get_order_price(),
+                                                            self.order_book[j].get_order_shares()))
+                       
+            # Remove any filled orders
+            self.order_book = [order for order in self.order_book if not order.get_order_filled()]
 
+
+
+    def place_order(self, order):
+        self.order_book.append(order) 
     def send_fill_notification(self, order):
-        print("ORDER FOR {} FILLED AT {}".format(order.ticker, order.price))
+        print("ORDER FOR {} FILLED @ {}".format(order.ticker, order.price))
+        order.set_filled(True)
 
-    def backtester_interface(self):
-        self.run(10)
+    def backtester_interface(self, iterations, flags=None):
+        if flags is not None and "print" in flags:
+            self.run(iterations, True)
+        else:
+            self.run(iterations)
 
 
 

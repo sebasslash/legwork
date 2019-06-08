@@ -30,7 +30,10 @@ class Portfolio:
         print("Portfolio Value: {}".format(self.portfolioValue))
     
    def update_portfolio(self, order):
-        if order.price * order.shares <= self.portfolioCash:
-            self.portfolioCash -= order.price * order.shares 
+        price = order.get_order_price()
+        shares = order.get_order_shares()
+        if price * shares <= self.portfolioCash:
+            self.portfolioCash -= price * shares 
+            self.add_security(order.get_order_ticker(), {"price": price, "shares": shares})
             return True
         return False

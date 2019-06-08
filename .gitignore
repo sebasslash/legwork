@@ -1,1 +1,4 @@
 legworkENV/
+.vscode/
+backtester/__pycache__/
+
