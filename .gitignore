@@ -1,4 +1,4 @@
 legworkENV/
 .vscode/
 backtester/__pycache__/
-
+venv/
