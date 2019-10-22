@@ -18,6 +18,10 @@ class Backtester:
         self.order_book = []
     
     def process_market_event(self, counter):
+        """
+            stock[0] -> Stock's ticker
+            stock[1] -> Stock's dataframe
+        """
         for stock in self.market_data.items():
             data_point = stock[1].iloc[counter]
             tick = Tick(
