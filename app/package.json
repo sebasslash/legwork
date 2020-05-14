@@ -1,0 +1,15 @@
+{
+  "name": "legwork-desktop-app",
+  "version": "0.0.1",
+  "description": "The desktop app for legwork",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Sebastian Rivera",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^8.2.5"
+  }
+}

@@ -1,0 +1,39 @@
+#main-background {
+	background: #32323e; 
+}
+#chart-section {
+	height: 60vh;
+	width: 100%;
+}
+#metrics-section {
+	height: 40vh;
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	margin-left: 1%;
+}
+#upload-section {
+	height: 30%;
+	width: 100%;
+}
+#parameters-section {
+	height: 70%;
+	width: 100%;
+}
+#metrics-table {
+
+}
+.section {
+	border-radius: 5px;
+}
+.section-btn-1 {
+	width: 100%;
+	border: none;
+	background: #11998e; 
+	
+}
+
+.text-center {
+	text-align: center;
+}
