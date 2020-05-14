@@ -3,3 +3,4 @@ legworkENV/
 backtester/__pycache__/
 venv/
 app/node_modules/
+web-api/node_modules/
