@@ -10,6 +10,6 @@
   "author": "Sebastian Rivera",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^8.2.5"
+    "electron": "^8.5.2"
   }
 }
